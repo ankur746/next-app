@@ -6,14 +6,14 @@ import React from "react";
 const CategoryFilter = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const selectedCategory = searchParams.get("category");
+  const selectedCategory = Number(searchParams.get("category"));
 
-  const handleSelect = (categoryId: string) => {
+  const handleSelect = (categoryId: number) => {
     const params = new URLSearchParams(searchParams.toString());
     if (categoryId === selectedCategory) {
       params.delete("category");
     } else {
-      params.set("category", categoryId);
+      params.set("category", categoryId.toString());
     }
     router.push(`/?${params.toString()}`);
   };
@@ -30,7 +30,7 @@ const CategoryFilter = () => {
           }`}
           onClick={() => handleSelect(cat.id)}
         >
-          {cat.name}
+          {cat.title}
         </button>
       ))}
     </div>

@@ -23,7 +23,7 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: number) => {
     setCart((prevCart) => prevCart.filter((prd) => prd.id !== id));
   };
 

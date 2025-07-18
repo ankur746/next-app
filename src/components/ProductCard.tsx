@@ -7,16 +7,15 @@ const ProductCard = ({ product }: { product: Product }) => {
   const context = useCart();
   const { addToCart, cart } = context;
   const isAdded = cart.find((item) => item.id === product.id);
-  console.log("isAdded", isAdded);
+
   return (
-    <div className="border p-4 rounded mb-2 w-60">
-      <h3 className="text-lg font-bold">{product.name}</h3>
-      <div className="flex items-center justify-center h-40">
+    <div className="border p-1 rounded w-60">
+      <h3 className="text-lg font-bold">{product.id}</h3>
+      <div className="flex items-center justify-center">
         <Image
           alt="Product Image"
-          className="object-contain"
-          src={product.image}
-          width={100}
+          src={product.thumbnail}
+          width={200}
           height={100}
         />
       </div>

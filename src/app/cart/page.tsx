@@ -28,7 +28,7 @@ const Page = () => {
           <ul className="space-y-2">
             {cart.map((item) => (
               <li key={item.id}>
-                {item.name} - ${item.price} x {item.quantity}
+                {item.title} - ${item.price} x {item.quantity}
                 <button
                   className="ml-4 text-red-500"
                   onClick={() => removeFromCart(item.id)}

@@ -1,25 +1,29 @@
 "use client";
-import { products } from "@/lib/data";
-import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryFilter from "./CategoryFilter";
 import ProductCard from "./ProductCard";
+import { PRODUCTS_ENDPOINTS } from "@/constants/Endpoints";
 
 const FilteredProductList = () => {
-  const searchParams = useSearchParams();
-  const category = searchParams.get("category");
-
-  const filteredProducts = category
-    ? products.filter((p) => p.categoryId === category)
-    : products;
+  const [products, setProducts] = useState([]);
+  const fetchProducts = async () => {
+    const res = await fetch(PRODUCTS_ENDPOINTS);
+    const resInJson = await res.json();
+    const { products } = resInJson;
+    setProducts(products);
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <>
       <CategoryFilter />
-      <div className="flex gap-2">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <div className="grid grid-cols-4 gap-4 justify-evenly">
+        {products?.length > 0 &&
+          products.map((product: any) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
       </div>
     </>
   );
