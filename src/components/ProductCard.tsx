@@ -4,13 +4,13 @@ import Image from "next/image";
 import React from "react";
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const context = useCart();
-  const { addToCart, cart } = context;
-  const isAdded = cart.find((item) => item.id === product.id);
+  // const context = useCart();
+  // const { addToCart, cart } = context;
+  // const isAdded = cart.find((item) => item.id === product.id);
 
   return (
     <div className="border p-1 rounded w-60">
-      <h3 className="text-lg font-bold">{product.id}</h3>
+      {/* <h3 className="text-lg font-bold">{product.id}</h3> */}
       <div className="flex items-center justify-center">
         <Image
           alt="Product Image"
@@ -20,16 +20,19 @@ const ProductCard = ({ product }: { product: Product }) => {
         />
       </div>
       <div>
+        <h6 className="font-bold">{product.title}</h6>
         <p>${product.price}</p>
-        <button
+        {/* <button
           className="bg-blue-500 text-white px-3 py-1 mt-2 hover:cursor-pointer"
           onClick={() => addToCart(product)}
         >
           {isAdded ? "Added" : "Add to Cart"}
-        </button>
+        </button> */}
       </div>
     </div>
   );
 };
 
 export default ProductCard;
+
+

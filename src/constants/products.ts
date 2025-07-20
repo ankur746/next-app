@@ -1,0 +1,1 @@
+export const PRODUCTS_SELECTION_QUERY = 'select=id,title,price,category,rating,stock,thumbnail'

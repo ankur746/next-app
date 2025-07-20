@@ -1,7 +1,7 @@
 export interface Review {
   rating: number
   comment: string
-  date: string // ISO string
+  date: string
   reviewerName: string
   reviewerEmail: string
 }
@@ -13,8 +13,8 @@ export interface Dimensions {
 }
 
 export interface Meta {
-  createdAt: string // ISO string
-  updatedAt: string // ISO string
+  createdAt: string
+  updatedAt: string
   barcode: string
   qrCode: string
 }
