@@ -6,6 +6,9 @@ const nextConfig = {
   images: {
     domains: ['m.media-amazon.com'],
     remotePatterns: [new URL('https://cdn.dummyjson.com/**')],
+  },
+  experimental: {
+    serverActions: true,
   }
 };
 
