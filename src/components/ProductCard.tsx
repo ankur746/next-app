@@ -1,4 +1,3 @@
-import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import React from "react";
@@ -34,5 +33,3 @@ const ProductCard = ({ product }: { product: Product }) => {
 };
 
 export default ProductCard;
-
-

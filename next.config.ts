@@ -1,10 +1,12 @@
-import type { NextConfig } from "next";
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     domains: ['m.media-amazon.com'],
     remotePatterns: [new URL('https://cdn.dummyjson.com/**')],
   }
 };
 
-export default nextConfig;
+export default  withBundleAnalyzer(nextConfig);

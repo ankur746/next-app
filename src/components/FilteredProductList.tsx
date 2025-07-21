@@ -25,9 +25,7 @@ const FilteredProductList = () => {
         `${PRODUCTS_ENDPOINTS}?limit=${LIMIT}&skip=${skip}&${PRODUCTS_SELECTION_QUERY}`
       );
       const data = await res.json();
-
       const { products } = data;
-
       if (products.length < LIMIT) setHasMore(false);
       setProducts((prev) => [...prev, ...data.products]);
       setSkip((prev) => prev + LIMIT);
