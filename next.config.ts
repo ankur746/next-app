@@ -7,9 +7,9 @@ const nextConfig = {
     domains: ['m.media-amazon.com'],
     remotePatterns: [new URL('https://cdn.dummyjson.com/**')],
   },
-  experimental: {
-    serverActions: true,
-  }
+  // experimental: {
+  //   serverActions: true,
+  // }
 };
 
 export default  withBundleAnalyzer(nextConfig);
