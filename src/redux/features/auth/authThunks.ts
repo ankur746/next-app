@@ -9,7 +9,7 @@ export const loginUser = createAsyncThunk<
   try {
     const response = await loginApi({ username, password });
     return response;
-  } catch (err: any) {
-    return thunkAPI.rejectWithValue(err.message);
+  } catch (err) {
+    return thunkAPI.rejectWithValue((err as any)?.message);
   }
 });

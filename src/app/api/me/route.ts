@@ -12,6 +12,6 @@ export async function GET() {
   try {
     return NextResponse.json({ user: JSON.parse(user.value) }, { status: 200 });
   } catch (e) {
-    return NextResponse.json({ user: null }, { status: 400 });
+    return NextResponse.json({ user: null, error: e || 'Something went wrong' }, { status: 400 });
   }
 }

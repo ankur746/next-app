@@ -1,5 +1,4 @@
 import { BASE_PATH, LOGIN } from "@/constants/Endpoints";
-import { NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 import { cookies } from 'next/headers';
