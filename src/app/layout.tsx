@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import { Providers } from "@/redux/store/Providers";
+import AppInitializer from "@/components/auth/AppInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <Providers>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <AppInitializer>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </AppInitializer>
         </Providers>
       </body>
     </html>

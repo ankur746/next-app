@@ -1,4 +1,4 @@
-import { loginApi } from "@/service/authApi";
+import { loginApi } from "@/service/authService";
 import { AuthResponse } from "@/types/Auth";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 

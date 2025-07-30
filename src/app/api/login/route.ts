@@ -1,5 +1,9 @@
 import { BASE_PATH, LOGIN } from "@/constants/Endpoints";
+import { NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
+
+import { cookies } from 'next/headers';
+
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -23,24 +27,16 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await res.json();
-
-    const response = NextResponse.json({ message: "Login successful", user: data });
-
-    response.cookies.set("accessToken", data.accessToken, {
-      httpOnly: true,
-      path: "/",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60,
+    const cookieStore = await cookies();
+    cookieStore.set('user', JSON.stringify(data), {
+      httpOnly: false,
+      secure: false,
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+      sameSite: 'lax',
     });
+    return NextResponse.json({ message: "Login successful", user: data });
 
-    response.cookies.set("refreshToken", data.refreshToken, {
-      httpOnly: true,
-      path: "/",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60,
-    });
-
-    return response;
   } catch (error) {
     return NextResponse.json({ error: error || "Internal server error" }, { status: 500 });
   }
