@@ -36,13 +36,16 @@ const Header = () => {
               </div>
               <button
                 onClick={handleLogout}
-                className="text-red-600 hover:underline ml-4"
+                className="text-red-600 hover:underline ml-4 cursor-pointer"
               >
                 Logout
               </button>
             </>
           ) : (
-            <Link href="/auth/login" className="text-gray-600 hover:text-black">
+            <Link
+              href="/auth/login"
+              className="text-gray-600 hover:text-black cursor-pointer"
+            >
               Login
             </Link>
           )}

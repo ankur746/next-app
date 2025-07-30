@@ -11,8 +11,8 @@ type Errors = {
 
 export default function LoginPage() {
   const router = useRouter();
-  const [userName, setUserName] = useState<string>("emilys");
-  const [password, setPassword] = useState<string>("emilyspass");
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [loading, setIsLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
