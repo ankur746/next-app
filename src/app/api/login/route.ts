@@ -1,3 +1,4 @@
+import { BASE_PATH, LOGIN } from "@/constants/Endpoints";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -5,7 +6,7 @@ export async function POST(req: NextRequest) {
   const { username, password } = body;
 
   try {
-    const res = await fetch("https://dummyjson.com/auth/login", {
+    const res = await fetch(`${BASE_PATH}/${LOGIN}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

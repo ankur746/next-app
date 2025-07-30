@@ -1,4 +1,6 @@
 "use client";
+import { useAppDispatch } from "@/hook/useAppDispatch";
+import { loginUser } from "@/redux/features/auth/authThunks";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,6 +13,8 @@ export default function LoginPage() {
   const router = useRouter();
   const [userName, setUserName] = useState<string>("emilys");
   const [password, setPassword] = useState<string>("emilyspass");
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const [errors, setErrors] = useState<Errors>({
     userName: "",
@@ -57,30 +61,25 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateAll()) return;
-
+    setIsLoading(true);
     try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: userName,
-          password,
-        }),
-      });
+      const resultAction = await dispatch(
+        loginUser({ username: userName, password })
+      );
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.error || "Login failed");
-        return;
+      if (loginUser.fulfilled.match(resultAction)) {
+        // login successful
+        router.push("/");
+      } else {
+        // login failed
+        const errorMsg = resultAction.error.message || "Login failed";
+        alert(errorMsg);
       }
-
-      router.push("/");
     } catch (err) {
       console.error("Login error", err);
       alert("Something went wrong.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -118,9 +117,9 @@ export default function LoginPage() {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 cursor-pointer"
         >
-          Login
+          {loading ? "Login...." : "Login"}
         </button>
       </form>
     </div>

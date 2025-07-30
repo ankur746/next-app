@@ -1,9 +1,9 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import ProductCard from "./ProductCard";
 import { PRODUCTS_ENDPOINTS } from "@/constants/Endpoints";
 import { Product } from "@/types/product";
 import { PRODUCTS_SELECTION_QUERY } from "@/constants/products";
+import ProductCard from "./ProductCard";
 
 const LIMIT = 30;
 const FilteredProductList = () => {

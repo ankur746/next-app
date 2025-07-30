@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CartContextProvider } from "@/context/CartContext";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { AuthProvider } from "@/context/AuthContext";
+import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
+import { Providers } from "@/redux/store/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,13 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <CartContextProvider>
-          <AuthProvider>
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </AuthProvider>
-        </CartContextProvider>
+        <Providers>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
