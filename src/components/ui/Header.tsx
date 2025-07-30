@@ -10,7 +10,14 @@ const Header = () => {
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const res = await fetch("/api/auth/logout", { method: "POST" });
+
+    if (!res.ok) {
+      alert("Something went wrong..");
+      return;
+    }
+
     dispatch(logout());
   };
 

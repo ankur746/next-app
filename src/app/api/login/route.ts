@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
     const data = await res.json();
     const cookieStore = await cookies();
     cookieStore.set('user', JSON.stringify(data), {
-      httpOnly: false,
-      secure: false,
+      httpOnly: true,
+      secure: true,
       path: '/',
       maxAge: 60 * 60 * 24 * 7,
       sameSite: 'lax',
