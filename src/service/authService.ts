@@ -1,6 +1,7 @@
+import { LOGIN_ENDPOINT } from "@/constants/NextEndPoints";
 
 export async function loginApi({ username, password }: { username: string, password: string }) { 
-    const response = await fetch("/api/login", {
+    const response = await fetch(LOGIN_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

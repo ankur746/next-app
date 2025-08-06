@@ -1,15 +1,18 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { PRODUCTS_ENDPOINTS } from "@/constants/Endpoints";
+import { BASE_PATH, PRODUCTS_ENDPOINTS } from "@/constants/Endpoints";
 import { Product } from "@/types/product";
 import { PRODUCTS_SELECTION_QUERY } from "@/constants/products";
 import ProductCard from "./ProductCard";
 
 const LIMIT = 30;
-const FilteredProductList = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+interface FilteredProductListProps {
+  initialProducts: Product[];
+}
+const FilteredProductList = ({ initialProducts }: FilteredProductListProps) => {
+  const [products, setProducts] = useState<Product[]>(initialProducts || []);
 
-  const [skip, setSkip] = useState(0);
+  const [skip, setSkip] = useState(initialProducts.length || 0);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const isFetchingRef = useRef(false);
@@ -22,7 +25,7 @@ const FilteredProductList = () => {
     setIsLoading(true);
     try {
       const res = await fetch(
-        `${PRODUCTS_ENDPOINTS}?limit=${LIMIT}&skip=${skip}&${PRODUCTS_SELECTION_QUERY}`
+        `${BASE_PATH}/${PRODUCTS_ENDPOINTS}?limit=${LIMIT}&skip=${skip}&${PRODUCTS_SELECTION_QUERY}`
       );
       const data = await res.json();
       const { products } = data;

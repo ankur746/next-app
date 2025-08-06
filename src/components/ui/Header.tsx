@@ -1,5 +1,6 @@
 "use client";
 
+import { LOGOUT_ENDPOINT } from "@/constants/NextEndPoints";
 import { useAppDispatch } from "@/hook/useAppDispatch";
 import { useAppSelector } from "@/hook/useAppSelector";
 import { logout } from "@/redux/features/auth/authSlice";
@@ -11,8 +12,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
 
   const handleLogout = async () => {
-    const res = await fetch("/api/auth/logout", { method: "POST" });
-
+    const res = await fetch(LOGOUT_ENDPOINT, { method: "POST" });
     if (!res.ok) {
       alert("Something went wrong..");
       return;
